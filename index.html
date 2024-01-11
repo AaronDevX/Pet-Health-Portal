@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <title>Pet Health Portal</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Pet Health Portal</h1>
+        <div class="content" id="content">
+            <div>
+                <form class="form-pet" id="new-appointment">
+                    <legend>Patient Information</legend>
+                    <div>
+                        <label for="pet">Pet Name:</label>
+                        <input type="text" id="pet" name="pet" placeholder="Pet Name">
+                    </div>
+                    <div>
+                        <label for="owner">Owner:</label>
+                        <input type="text" id="owner" name="owner" placeholder="Pet Owner's Name">
+                    </div>
+                    <div>
+                        <label for="phone">Phone:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Phone Number">
+                    </div>
+                    <div>
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div>
+                        <label for="time">Time:</label>
+                        <input type="time" id="time" name="time">
+                    </div>
+                    <div>
+                        <label class="ta-symptons" for="symptoms">Symptoms:</label>
+                        <textarea id="symptoms" name="symptoms"></textarea>
+                    </div>
+                    <button class="new-appointment-btn" type="submit">Create Appointment</button>
+                </form>
+            </div>
+            <div class="appointments-container">
+                <h2 id="manage">Manage Your Appointments</h2>
+                <ul id="appointments"></ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
