@@ -32,6 +32,13 @@ h1{
     flex-direction: column;
     justify-content: space-around;
 }
+@media (min-width: 850px) {
+    .content{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
 .content div{
     width: 100%;
 }
@@ -50,6 +57,17 @@ h1{
     flex-direction: column;
     row-gap: 5px;
     margin: 20px 0;
+}
+@media (min-width: 550px) {
+    .form-pet div{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: none;
+        row-gap: none;
+        column-gap: 10px;
+        margin: 20px 0;
+        align-items: center;
+    }
 }
 legend{
     text-align: center;
