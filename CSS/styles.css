@@ -28,6 +28,9 @@ h1{
 h2{
     font-size: 30px;
 }
+ul{
+    padding: 0;
+}
 .container{
     width: 90%;
     max-width: 1400px;
@@ -57,6 +60,11 @@ h2{
     text-align: center;
     color: var(--principal-color);
 }
+@media (min-width: 850px) {
+    .appointments-container{
+        margin-left: 30px;
+    }
+}
 
 /* FORM */
 .form-pet{
@@ -77,6 +85,9 @@ h2{
         column-gap: 10px;
         margin: 20px 0;
         align-items: center;
+    }
+    .appointments-container{
+        margin-left: 0;
     }
 }
 legend{
