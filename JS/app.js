@@ -40,6 +40,9 @@ class Appointments{
     addPatient(pD){
         this.appointments = [...this.appointments, pD];
     }
+    deletePatient(idDelete){
+        this.appointments = this.appointments.filter(appointment => appointment.id !== idDelete)
+    }
 }
 class UI{
     showAlert(type, message){
@@ -60,7 +63,7 @@ class UI{
     showPetInfo(pData){
         const dataList = document.querySelector("#appointments");
         const {pet, owner, phone, date, time, symptoms, id} = pData;
-        
+
         const dataDiv = document.createElement("DIV");
         dataDiv.setAttribute("id", id);
         dataDiv.classList.add("data-pet");
@@ -104,12 +107,27 @@ class UI{
         symptomsP.appendChild(document.createTextNode(symptoms));
         symptomsP.classList.add("symptoms");
 
+        //BUTTONS
+        const btnsDiv = document.createElement("DIV");
+        btnsDiv.classList.add("div-btns");
+
+        const deleteBtn = document.createElement("BUTTON");
+        deleteBtn.classList.add("delete-appointment", "appointment-btn");
+        deleteBtn.textContent = "DELETE";
+        deleteBtn.onclick = ()=>{
+            dataDiv.remove()
+            appoint.deletePatient(id)
+        }
+
+        btnsDiv.appendChild(deleteBtn);
+
         dataDiv.appendChild(petP);
         dataDiv.appendChild(ownerP);
         dataDiv.appendChild(phoneP);
         dataDiv.appendChild(dateP);
         dataDiv.appendChild(timeP);
         dataDiv.appendChild(symptomsP);
+        dataDiv.appendChild(btnsDiv);
 
         dataList.appendChild(dataDiv)
     }
