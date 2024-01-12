@@ -7,6 +7,9 @@ const symptomsInput = document.querySelector("#symptoms");
 
 const form = document.querySelector("#new-appointment");
 
+let edit;
+let idEdit;
+
 const petObject = {
     pet: "",
     owner: "",
@@ -16,6 +19,7 @@ const petObject = {
     symptoms: ""
 }
 
+//Events
 eventListeners();
 function eventListeners(){
     petInput.addEventListener("input", registerData);
@@ -27,7 +31,6 @@ function eventListeners(){
 
     form.addEventListener("submit", sendForm);
 }
-
 function registerData(e){
     petObject[e.target.name] = e.target.value;
 }
@@ -113,13 +116,20 @@ class UI{
 
         const deleteBtn = document.createElement("BUTTON");
         deleteBtn.classList.add("delete-appointment", "appointment-btn");
-        deleteBtn.textContent = "DELETE";
+        deleteBtn.textContent = "Delete";
         deleteBtn.onclick = ()=>{
-            dataDiv.remove()
-            appoint.deletePatient(id)
+            dataDiv.remove();
+            appoint.deletePatient(id);
+        }
+        const editBtn = document.createElement("BUTTON");
+        editBtn.classList.add("edit-appointment", "appointment-btn");
+        editBtn.textContent = "Edit";
+        editBtn.onclick = () =>{
+            editPetObject(id);
         }
 
         btnsDiv.appendChild(deleteBtn);
+        btnsDiv.appendChild(editBtn);
 
         dataDiv.appendChild(petP);
         dataDiv.appendChild(ownerP);
@@ -152,8 +162,17 @@ function sendForm(e){
     uInterface.showAlert("success-alert", "Patient added");
 
     //Show Patient Info
-    petObject.id = Date.now();
-    uInterface.showPetInfo(petObject)
+    if(edit){
+        appoint.deletePatient(idEdit);
+        document.getElementById(idEdit).remove();
+
+        idEdit="";
+        edit = false;
+    }else{
+        petObject.id = Date.now();
+    }
+
+    uInterface.showPetInfo(petObject);
     appoint.addPatient({...petObject});
 
     //Reset form and patient object 
@@ -169,4 +188,30 @@ function resetPetObject(){
     petObject.date = "";
     petObject.time = "";
     petObject.symptoms = "";
+}
+
+function editPetObject(id){
+    const patient = appoint.appointments.filter(ap => ap.id == id);
+
+    const {pet, owner, phone, date, time, symptoms, idp} = patient[0];
+
+    petInput.value = pet;
+    ownerInput.value = owner;
+    phoneInput.value = phone;
+    dateInput.value = date;
+    timeInput.value = time;
+    symptomsInput.value =symptoms;
+    
+    petObject.pet = pet;
+    petObject.owner = owner;
+    petObject.phone = phone;
+    petObject.date = date;
+    petObject.time = time;
+    petObject.symptoms = symptoms;
+    petObject.id = idp;
+
+    form.querySelector(".new-appointment-btn").textContent = "Save Changes";
+
+    idEdit = id;
+    edit = true;
 }
