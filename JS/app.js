@@ -30,7 +30,6 @@ function eventListeners(){
 
 function registerData(e){
     petObject[e.target.name] = e.target.value;
-    console.log(petObject)
 }
 
 class UI{
@@ -56,12 +55,25 @@ const uInterface = new UI;
 function sendForm(e){
     e.preventDefault();
 
+    //Validate form and show alert
     const {pet, owner, phone, date, time, symptoms} = petObject;
 
     if(pet=="" || owner=="" || phone=="" || date=="" || time=="" || symptoms==""){
         uInterface.showAlert("error-alert", "All fields are required");
         return;
     }
-
     uInterface.showAlert("success-alert", "Patient added");
+
+    //Reset form and patient object 
+    resetPetObject();
+    form.reset();
+}
+
+function resetPetObject(){
+    petObject.pet = "";
+    petObject.owner = "";
+    petObject.phone = "";
+    petObject.date = "";
+    petObject.time = "";
+    petObject.symptoms = "";
 }
