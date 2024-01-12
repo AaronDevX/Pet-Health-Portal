@@ -13,7 +13,7 @@
     font-size: 18px;
 }
 body{
-    background-image: url(/IMG/background-pets.jpg);
+    background-image: url(../IMG/background-pets.jpg);
     
 }
 h1, h2, h3, legend{
