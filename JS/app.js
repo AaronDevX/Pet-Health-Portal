@@ -141,7 +141,7 @@ class UI{
 
         dataList.appendChild(dataDiv)
     }
-    editPetInfo(idE, Ob){
+/*     editPetInfo(idE, Ob){
         const dataDiv = document.getElementById(idE);
         dataDiv.querySelector(".pet-name").textContent= Ob.pet;
         dataDiv.querySelector(".owner").lastChild.nodeValue= Ob.owner;
@@ -149,7 +149,7 @@ class UI{
         dataDiv.querySelector(".date").lastChild.nodeValue= Ob.date
         dataDiv.querySelector(".time").lastChild.nodeValue= Ob.time;
         dataDiv.querySelector(".symptoms").lastChild.nodeValue= Ob.symptoms;
-    }
+    } */
 }
 
 //Instantiate classes
@@ -167,21 +167,26 @@ function sendForm(e){
     if(pet=="" || owner=="" || phone=="" || date=="" || time=="" || symptoms==""){
         uInterface.showAlert("error-alert", "All fields are required");
         return;
+    }else if(edit){
+        uInterface.showAlert("success-alert", "Changes have been saved successfully");
+    }else{
+        uInterface.showAlert("success-alert", "Patient added");
     }
-    uInterface.showAlert("success-alert", "Patient added");
 
     //Show Patient Info
     if(edit){
         appoint.deletePatient(idEdit);
-        uInterface.editPetInfo(idEdit, {...petObject})
+        /* uInterface.editPetInfo(idEdit, {...petObject}) */
+        document.getElementById(idEdit).remove();
 
+        form.querySelector(".new-appointment-btn").textContent = "Create Appointment";
+        
         idEdit="";
         edit = false;
     }else{
         petObject.id = Date.now();
-        uInterface.showPetInfo(petObject);
     }
-
+    uInterface.showPetInfo(petObject);
     appoint.addPatient({...petObject});
 
     //Reset form and patient object 
