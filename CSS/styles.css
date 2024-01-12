@@ -130,3 +130,18 @@ input:focus, textarea:focus {
 .error-alert{
     background-color: var(--red);
 }
+.data-pet{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+.pet-name{
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+.data-pet span{
+    font-weight: bold;
+}
