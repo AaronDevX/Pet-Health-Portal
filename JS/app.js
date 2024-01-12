@@ -141,6 +141,15 @@ class UI{
 
         dataList.appendChild(dataDiv)
     }
+    editPetInfo(idE, Ob){
+        const dataDiv = document.getElementById(idE);
+        dataDiv.querySelector(".pet-name").textContent= Ob.pet;
+        dataDiv.querySelector(".owner").lastChild.nodeValue= Ob.owner;
+        dataDiv.querySelector(".phone").lastChild.nodeValue= Ob.phone;
+        dataDiv.querySelector(".date").lastChild.nodeValue= Ob.date
+        dataDiv.querySelector(".time").lastChild.nodeValue= Ob.time;
+        dataDiv.querySelector(".symptoms").lastChild.nodeValue= Ob.symptoms;
+    }
 }
 
 //Instantiate classes
@@ -164,15 +173,15 @@ function sendForm(e){
     //Show Patient Info
     if(edit){
         appoint.deletePatient(idEdit);
-        document.getElementById(idEdit).remove();
+        uInterface.editPetInfo(idEdit, {...petObject})
 
         idEdit="";
         edit = false;
     }else{
         petObject.id = Date.now();
+        uInterface.showPetInfo(petObject);
     }
 
-    uInterface.showPetInfo(petObject);
     appoint.addPatient({...petObject});
 
     //Reset form and patient object 
